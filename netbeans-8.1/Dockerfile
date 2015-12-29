@@ -18,7 +18,6 @@ RUN wget --progress=bar:force $NETBEANS_URL -O /tmp/netbeans.sh \
 	&& echo "Installing NetBeans $NETBEANS_VERSION..." \
 	&& chmod +x /tmp/netbeans.sh; sleep 1 \
 	&& /tmp/netbeans.sh --silent \
-	&& ln -s /usr/local/netbeans-$NETBEANS_VERSION/bin/netbeans /usr/local/bin/* \
 	&& rm -rf /tmp/*
 
 CMD /usr/local/netbeans-$NETBEANS_VERSION/bin/netbeans
