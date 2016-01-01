@@ -9,10 +9,18 @@ RUN curl -L -o /tmp/policy.zip \
 	&& unzip -j -o /tmp/policy.zip *.jar -d $JAVA_HOME/jre/lib/security \
 	&& rm /tmp/policy.zip
 
-# Add ant to java, maven, git, & svn
+# Add ant and vim to java, maven, git, & svn
+# Finish with some simple tool tests showing their versions 
 RUN apt-get update && apt-get install -y --no-install-recommends \
         ant \
         ant-optional \
+        vim \
 	&& apt-get clean \
 	&& rm -rf /var/lib/apt/lists/* \
-	&& rm -rf /tmp/*
+	&& rm -rf /tmp/* \
+	&& ant -version \
+	&& git --version \
+	&& java -version \
+	&& mvn --version \
+	&& svn --version \
+	&& vi --version
