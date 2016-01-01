@@ -106,3 +106,40 @@ Changes not staged for commit:
 no changes added to commit (use "git add" and/or "git commit -a")
 $
 ```
+##### GitHub Data Volume
+Another option (with Docker Engine 1.9.0) is to use ```volume create``` to create a named volume. 
+```sh
+$ docker volume create --name github
+github
+```
+Then, use a container to copy files from the host's current directory to the named volume:
+```sh
+$ docker run --rm -it -v github:/root/github/psharkey -v $(pwd):/root/from busybox
+/ # ls -l root/from
+total 0
+drwxr-xr-x    1 1000     staff          170 Jan  1 01:40 docker
+/ # ls -l root/github/psharkey
+total 0
+/ # cp -r root/from/docker root/github/psharkey
+/ # ls -l root/github/psharkey
+total 4
+drwxr-xr-x    5 root     root          4096 Jan  1 05:24 docker
+/ # exit
+```
+The host's bash function then becomes:
+```bash
+git(){
+    docker run --rm -it \
+        -v github:/root/github/psharkey \
+        -w /root/github/psharkey/docker \
+        --name toolbox-git \
+        psharkey/toolbox git "$@"
+}
+```
+And finally, when the ```git``` function is run it will be working with the repository which was copied into the named volume:
+```sh
+$ git status
+On branch vim-and-data-containers
+nothing to commit, working directory clean
+$
+```
