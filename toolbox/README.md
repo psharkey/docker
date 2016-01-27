@@ -1,9 +1,9 @@
 # CLI Toolbox
-From [maven](https://hub.docker.com/_/maven/) which includes Java, Maven, Git & SVN utilities. Ant, Vim, and the [unlimited strength Java policy files](http://www.oracle.com/technetwork/java/javase/downloads/jce8-download-2133166.html) are added here. 
+From [maven](https://hub.docker.com/_/maven/) which includes Java, Maven, Git & SVN utilities. Ant, Docker, Node.js, Vim, and the [unlimited strength Java policy files](http://www.oracle.com/technetwork/java/javase/downloads/jce8-download-2133166.html) are added here. 
 ### Bash Example 
-Simple example which opens a bash shell inside the toolbox container-
+Simple example which opens a bash shell (using the Dockerfile default `CMD` instruction) inside the toolbox container-
 ```bash
-$ docker run --rm -it --name toolbox psharkey/toolbox bash
+$ docker run --rm -it --name toolbox psharkey/toolbox
 root@1b8f4106bcb8:/#
 ```
 Then, ```exit``` will stop the container and return to the host shell - 
@@ -143,3 +143,82 @@ On branch vim-and-data-containers
 nothing to commit, working directory clean
 $
 ```
+<<<<<<< HEAD
+# Build Environment Usage
+While jou may find the individual examples above to be useful, the intent is really to use this toolbox as a development environment. The following bash function uses the previous examples and includes additional arguments to make this possible:
+```bash
+toolbox(){
+        x11host
+        docker run --rm -it \
+                -e DISPLAY=$X11HOST:0.0 \
+                -e "TZ=America/Chicago" \
+                --volumes-from github \
+                --volumes-from m2 \
+                -v /dev/urandom:/dev/random \
+                -v /var/run/docker.sock:/var/run/docker.sock \
+                -w /root/github/<YOUR REPO NAME> \
+                --name toolbox \
+                psharkey/toolbox "$@"
+}
+```
+A helper `x11host` function to determine the X11 host IP address:
+```bash
+# Define a variable to use for the X11 host IP
+x11host(){
+        ACTIVE_MACHINE=$(docker-machine active)
+        X11HOST="$(docker-machine inspect $ACTIVE_MACHINE \
+        | grep HostOnlyCIDR \
+        | awk '{print $2}' \
+        | sed 's/"//g' \
+        | cut -f1 -d"/")"
+}
+```
+The additional arguments include:
++  `-v /dev/urandom:/dev/random` is to deal with entropy [issues](http://stackoverflow.com/questions/26021181/not-enough-entropy-to-support-dev-random-in-docker-containers-running-in-boot2d)
++ `-v /var/run/docker.sock:/var/run/docker.sock` exposes the Docker daemon socket to this container instead of using [dind](http://jpetazzo.github.io/2015/09/03/do-not-use-docker-in-docker-for-ci/) (Docker In Docker)
+
+The following example commands show how Docker*ish* commands are possible within the toolbox like starting a toolbox container from within a toolbox. The steps are:
++ `toolbox` - the bash function from above
++ `git status` - could be any of the utilities available in the image
++ `docker ps` - simple Docker command to test connection to the Docker daemon *(which shows __this__ toolbox as the only running container)*
++ `docker run...` - starts another toolbox container
++ `docker ps` - the new container is isolated from the Docker daemon
+```bash
+$ toolbox
+root@0ecfd260e042:~/github/psharkey/docker# pwd
+/root/github/psharkey/docker
+root@0ecfd260e042:~/github/psharkey/docker# git status
+On branch toolbox
+nothing to commit, working directory clean
+root@0ecfd260e042:~/github/psharkey/docker# docker ps
+CONTAINER ID        IMAGE               COMMAND             CREATED             STATUS              PORTS               NAMES
+0ecfd260e042        psharkey/toolbox    "/bin/bash"         2 minutes ago       Up 2 minutes                            toolbox-dind
+root@0ecfd260e042:~/github/psharkey/docker# docker run --rm -it --name=toolbox-inside psharkey/toolbox
+root@1f2936bf5f07:/# docker ps
+Cannot connect to the Docker daemon. Is the docker daemon running on this host?
+root@1f2936bf5f07:/#
+```
+The Docker daemon connection can be passed on like:
+```bash
+# docker ps
+CONTAINER ID        IMAGE               COMMAND             CREATED             STATUS              PORTS               NAMES
+c81a2eff06b2        psharkey/toolbox    "/bin/bash"         29 seconds ago      Up 28 seconds                           toolbox-dind
+root@c81a2eff06b2:~/github/EFSS# docker run --rm -it -v /var/run/docker.sock:/var/run/docker.sock psharkey/toolbox
+root@3610b2b96dc5:/# docker ps
+CONTAINER ID        IMAGE               COMMAND             CREATED              STATUS              PORTS               NAMES
+3610b2b96dc5        psharkey/toolbox    "/bin/bash"         3 seconds ago        Up 3 seconds                            hopeful_pike
+c81a2eff06b2        psharkey/toolbox    "/bin/bash"         About a minute ago   Up About a minute                       toolbox-dind
+root@3610b2b96dc5:/# docker run --rm -it -v /var/run/docker.sock:/var/run/docker.sock psharkey/toolbox
+root@ac796da88e19:/# docker ps
+CONTAINER ID        IMAGE               COMMAND             CREATED             STATUS              PORTS               NAMES
+ac796da88e19        psharkey/toolbox    "/bin/bash"         10 seconds ago      Up 9 seconds                            distracted_hodgkin
+3610b2b96dc5        psharkey/toolbox    "/bin/bash"         59 seconds ago      Up 58 seconds                           hopeful_pike
+c81a2eff06b2        psharkey/toolbox    "/bin/bash"         2 minutes ago       Up 2 minutes                            toolbox-dind
+root@ac796da88e19:/#```
+
+
+
+
+
+=======
+>>>>>>> master
