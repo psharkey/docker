@@ -143,6 +143,7 @@ On branch vim-and-data-containers
 nothing to commit, working directory clean
 $
 ```
+<<<<<<< HEAD
 # Build Environment Usage
 While jou may find the individual examples above to be useful, the intent is really to use this toolbox as a development environment. The following bash function uses the previous examples and includes additional arguments to make this possible:
 ```bash
@@ -219,3 +220,5 @@ root@ac796da88e19:/#```
 
 
 
+=======
+>>>>>>> master
