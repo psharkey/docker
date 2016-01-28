@@ -6,6 +6,7 @@ RUN apt-get update -qq && apt-get install -qqy \
         ant \
         ant-optional \
 	apt-transport-https \
+	bzip2 \
 	ca-certificates \
 	curl \
 	iptables \
