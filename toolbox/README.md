@@ -143,7 +143,6 @@ On branch vim-and-data-containers
 nothing to commit, working directory clean
 $
 ```
-<<<<<<< HEAD
 # Build Environment Usage
 While jou may find the individual examples above to be useful, the intent is really to use this toolbox as a development environment. The following bash function uses the previous examples and includes additional arguments to make this possible:
 ```bash
@@ -215,10 +214,3 @@ ac796da88e19        psharkey/toolbox    "/bin/bash"         10 seconds ago      
 3610b2b96dc5        psharkey/toolbox    "/bin/bash"         59 seconds ago      Up 58 seconds                           hopeful_pike
 c81a2eff06b2        psharkey/toolbox    "/bin/bash"         2 minutes ago       Up 2 minutes                            toolbox-dind
 root@ac796da88e19:/#```
-
-
-
-
-
-=======
->>>>>>> master
