@@ -144,7 +144,7 @@ nothing to commit, working directory clean
 $
 ```
 # Build Environment Usage
-While jou may find the individual examples above to be useful, the intent is really to use this toolbox as a development environment. The following bash function uses the previous examples and includes additional arguments to make this possible:
+While you may find the individual examples above to be useful, the intent is really to use this toolbox as a development environment. The following bash function uses the previous examples and includes additional arguments to make this possible:
 ```bash
 toolbox(){
         x11host
