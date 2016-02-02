@@ -19,7 +19,7 @@ intellij(){
 * Set the `DISPLAY` variable using the value (from the helper function below)
 * Set the timezone (to your local value)
 * Map a volume to persist the IntelliJ IDEA preferences
-* Map volumes from `github` and `m2` data containers created for [(toolbox)](https://github.com/psharkey/docker/tree/master/toolbox)
+* Map volumes from `github` and `m2` data containers created for [toolbox](https://github.com/psharkey/docker/tree/master/toolbox)
 
 ### X11 helper function:
 ```bash
