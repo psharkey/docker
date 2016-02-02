@@ -1,6 +1,6 @@
 # InteiilJ IDEA + OpenJDK 8
 
-Example usage:
+### Example usage:
 ```bash
 intellij(){
 	x11host
@@ -14,12 +14,14 @@ intellij(){
 		psharkey/intellij
 }
 ```
-Parameter explanation:
+
+### Parameter explanation:
 * Set the `DISPLAY` variable using the value (from the helper function below)
 * Set the timezone (to your local value)
-* Map a volume to persist the Intellij IDEA preferences
+* Map a volume to persist the IntelliJ IDEA preferences
 * Map volumes from `github` and `m2` data containers created for [(toolbox)](https://github.com/psharkey/docker/tree/master/toolbox)
-X11 helper function:
+
+### X11 helper function:
 ```bash
 # Define a variable to use for the X11 host IP
 x11host(){
