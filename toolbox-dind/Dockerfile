@@ -6,15 +6,23 @@ RUN apt-get update -qq && apt-get install -qqy \
         ant \
         ant-optional \
 	apt-transport-https \
+	bzip2 \
 	ca-certificates \
 	curl \
 	iptables \
 	lxc \
-	npm \
 	ssh-askpass \ 
 	supervisor \
         vim \
-	zip
+	zip \
+	&& apt-get clean \
+	&& rm -rf /var/lib/apt/lists/* \
+	&& rm -rf /tmp/*
+
+# Install Node.js v5 via package manager
+# (https://nodejs.org/en/download/package-manager/#debian-and-ubuntu-based-linux-distributions)
+RUN curl -sL https://deb.nodesource.com/setup_5.x | bash -
+RUN apt-get install -qqy nodejs
 
 # Install Docker from Docker Inc. repositories.
 RUN curl -L https://get.docker.com/ | sh
@@ -23,14 +31,6 @@ RUN curl -L https://get.docker.com/ | sh
 ENV DOCKER_COMPOSE_VERSION 1.3.3
 RUN curl -L https://github.com/docker/compose/releases/download/${DOCKER_COMPOSE_VERSION}/docker-compose-`uname -s`-`uname -m` > /usr/local/bin/docker-compose \
 	&& chmod +x /usr/local/bin/docker-compose
-
-# Download & install the unlimited strength policy jars
-RUN curl -L -o /tmp/policy.zip \
-		--cookie 'oraclelicense=accept-securebackup-cookie;' \
-		http://download.oracle.com/otn-pub/java/jce/8/jce_policy-8.zip \ 
-	&& JAVA_HOME=$(update-java-alternatives --list | awk '{print $3}') \
-	&& unzip -j -o /tmp/policy.zip *.jar -d $JAVA_HOME/jre/lib/security \
-	&& rm /tmp/policy.zip
 
 # Install the wrapper script (see https://raw.githubusercontent.com/docker/docker/master/hack/dind)
 # and any other necessary scripts & make them executable
