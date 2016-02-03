@@ -1,5 +1,5 @@
 #
-# NetBeans 8.1 + JDK 1.8u65 bundle
+# NetBeans 8.1 + JDK 1.8u71 bundle
 #
 FROM ubuntu
 
@@ -10,23 +10,27 @@ RUN apt-get update && apt-get install -y \
 	&& rm -rf /var/lib/apt/lists/* \
 	&& rm -rf /tmp/*
 
-ENV NETBEANS_VERSION=8.1 \
-	COOKIE="Cookie: gpw_e24=http%3A%2F%2Fwww.oracle.com%2F; oraclelicense=accept-securebackup-cookie" \
-	NETBEANS_URL=http://download.oracle.com/otn-pub/java/jdk-nb/8u65-8.1/jdk-8u65-nb-8_1-linux-x64.sh
+# Alternative URL example
+# NetBeans 8.0.2 + JDK 1.7u80
+# ARG NETBEANS_URL=http://download.oracle.com/otn-pub/java/jdk-nb/7u80-8.0.2/jdk-7u80-nb-8_0_2-linux-x64.sh
+# ARG POLICY_URL=http://download.oracle.com/otn-pub/java/jce/8/jce_policy-7.zip 
+ARG NETBEANS_URL=http://download.oracle.com/otn-pub/java/jdk-nb/8u71-8.1/jdk-8u71-nb-8_1-linux-x64.sh
+ARG POLICY_URL= http://download.oracle.com/otn-pub/java/jce/8/jce_policy-8.zip 
+ARG COOKIE="Cookie: gpw_e24=http%3A%2F%2Fwww.oracle.com%2F; oraclelicense=accept-securebackup-cookie"
 
 RUN wget --progress=bar:force $NETBEANS_URL -O /tmp/netbeans.sh \
-	--no-cookies --no-check-certificate --header "$COOKIE" \
-	&& echo "Installing NetBeans $NETBEANS_VERSION..." \
-	&& chmod +x /tmp/netbeans.sh; sleep 1 \
-	&& /tmp/netbeans.sh --silent \
-	&& rm -rf /tmp/*
+        --no-cookies --no-check-certificate --header "$COOKIE" \
+        && echo "Installing NetBeans $NETBEANS_VERSION..." \
+        && chmod +x /tmp/netbeans.sh; sleep 1 \
+        && /tmp/netbeans.sh --silent \
+        && rm -rf /tmp/* \
+        && ln -s $(ls -d /usr/local/netbeans-*) /usr/local/netbeans
 
 # Download & install the unlimited strength policy jars
-RUN curl -L -o /tmp/policy.zip \
+RUN curl -L $POLICY_URL -o /tmp/policy.zip \
 		--cookie 'oraclelicense=accept-securebackup-cookie;' \
-		http://download.oracle.com/otn-pub/java/jce/8/jce_policy-8.zip \ 
-	&& JAVA_HOME=/usr/local/jdk1.8.0_65 \
-	&& unzip -j -o /tmp/policy.zip -d $JAVA_HOME/jre/lib/security \
+        && JAVA_HOME=$(ls -d /usr/local/jdk1.*)
+        && unzip -j -o /tmp/policy.zip -d $JAVA_HOME/jre/lib/security \
 	&& rm /tmp/policy.zip
 
-CMD /usr/local/netbeans-$NETBEANS_VERSION/bin/netbeans
+CMD /usr/local/netbeans/bin/netbeans
