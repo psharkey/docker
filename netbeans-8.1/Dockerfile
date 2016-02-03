@@ -13,7 +13,7 @@ RUN apt-get update && apt-get install -y \
 # Alternative URL example
 # NetBeans 8.0.2 + JDK 1.7u80
 #ARG NETBEANS_URL=http://download.oracle.com/otn-pub/java/jdk-nb/7u80-8.0.2/jdk-7u80-nb-8_0_2-linux-x64.sh
-#ARG POLICY_URL=http://download.oracle.com/otn-pub/java/jce/8/jce_policy-7.zip 
+#ARG POLICY_URL=http://download.oracle.com/otn-pub/java/jce/7/UnlimitedJCEPolicyJDK7.zip
 ARG NETBEANS_URL=http://download.oracle.com/otn-pub/java/jdk-nb/8u71-8.1/jdk-8u71-nb-8_1-linux-x64.sh
 ARG POLICY_URL=http://download.oracle.com/otn-pub/java/jce/8/jce_policy-8.zip 
 ARG COOKIE="Cookie: gpw_e24=http%3A%2F%2Fwww.oracle.com%2F; oraclelicense=accept-securebackup-cookie"
@@ -29,7 +29,7 @@ RUN wget --progress=bar:force $NETBEANS_URL -O /tmp/netbeans.sh \
 # Download & install the unlimited strength policy jars
 RUN curl -L $POLICY_URL -o /tmp/policy.zip \
 		--cookie 'oraclelicense=accept-securebackup-cookie;' \
-        && JAVA_HOME=$(ls -d /usr/local/jdk1.*) \
+	&& JAVA_HOME=$(ls -d /usr/local/jdk1.*) \
         && unzip -j -o /tmp/policy.zip -d $JAVA_HOME/jre/lib/security \
 	&& rm /tmp/policy.zip
 
