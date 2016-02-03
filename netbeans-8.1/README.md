@@ -1,4 +1,4 @@
-Based on [fgrehm/netbeans](https://hub.docker.com/r/fgrehm/netbeans/~/dockerfile/) and [dirichlet/netbeans](https://hub.docker.com/r/dirichlet/netbeans/) but uses [NetBeans 8.1 + JDK 1.8u65 bundle](http://www.oracle.com/technetwork/articles/javase/jdk-netbeans-jsp-142931.html) instead.
+Based on [fgrehm/netbeans](https://hub.docker.com/r/fgrehm/netbeans/~/dockerfile/) and [dirichlet/netbeans](https://hub.docker.com/r/dirichlet/netbeans/) but uses [NetBeans 8.1 + JDK 1.8u71 bundle](http://www.oracle.com/technetwork/articles/javase/jdk-netbeans-jsp-142931.html) instead.
 
 The following bash function example:
 * Determines the X11 host IP address (using the active machine)
@@ -25,13 +25,4 @@ netbeans(){
 ```
 
 
-
-
-
-
-
-
-
-
-
-
+Refer to [Dockerfile](https://github.com/psharkey/docker/blob/master/netbeans-8.1/Dockerfile) for building images with other versions. NetBeans 8.0.2 + JDK 1.7u80 is provided as an example alternative [tag](https://hub.docker.com/r/psharkey/netbeans-8.1/tags/).
