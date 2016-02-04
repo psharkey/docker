@@ -1,5 +1,5 @@
 # CLI Toolbox with DinD (Docker in Docker)
-From [maven](https://hub.docker.com/_/maven/) which includes Java, Maven, Git & SVN utilities. Ant, Vim, and the [unlimited strength Java policy files](http://www.oracle.com/technetwork/java/javase/downloads/jce8-download-2133166.html) are added here. Based on (toolbox)[https://github.com/psharkey/docker/tree/master/toolbox] with DinD added.
+From [maven](https://hub.docker.com/_/maven/) which includes Java, Maven, Git & SVN utilities. Ant, and Vim are added here. Based on [toolbox](https://github.com/psharkey/docker/tree/master/toolbox) with DinD added.
 
 ### Bash Example (without DinD running)
 Simple example which opens a bash shell inside the toolbox container-
