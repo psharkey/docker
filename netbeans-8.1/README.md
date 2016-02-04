@@ -7,7 +7,7 @@ The following bash function example:
 * Creates volumes from a host 'Workspace'
 ```bash
 netbeans(){
-    ACTIVE_MACHINE=$(docker-machine ls | grep '*' | awk '{print $1}')
+    ACTIVE_MACHINE=$(docker-machine active)
     X11HOST="$(docker-machine inspect $ACTIVE_MACHINE \
         | grep HostOnlyCIDR \
         | awk '{print $2}' \
