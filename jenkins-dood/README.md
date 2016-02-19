@@ -35,7 +35,6 @@ Bash function example with additional arguments including:
 A message is displayed showing the Jenkins URL to open in a browser.
 ```bash
 jenkins-dood(){
-        del_stopped jenkins-dood
         x11host
 
         LOCAL_PORT=11080
@@ -54,6 +53,21 @@ jenkins-dood(){
         echo "Jenkins started at: http:$VBOX_IP:$LOCAL_PORT"
 }
 ```
+
+The `x11_host` helper function simply creates an environment variable using the Docker machine's `HostOnlyCIDR` so the Jenkins container may launch GUI applications. Note: GUI applications will require some additional [setup](https://github.com/docker/docker/issues/8710) to display on the host.
+
+```bash
+# Define a variable to use for the X11 host IP
+x11host(){
+        ACTIVE_MACHINE=$(docker-machine active)
+        X11HOST="$(docker-machine inspect $ACTIVE_MACHINE \
+        | grep HostOnlyCIDR \
+        | awk '{print $2}' \
+        | sed 's/"//g' \
+        | cut -f1 -d"/")"
+}
+```
+
 Example output from above run within a bash function named 'jenkins-dood'
 
 ```bash
@@ -63,4 +77,3 @@ jenkins-dood
 Jenkins started at: http://192.168.99.101:11080
 $
 ```
-"README.md" 40L, 1955C
