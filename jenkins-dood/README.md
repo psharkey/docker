@@ -11,7 +11,12 @@ This Jenkins Docker image provides Docker*ish* capabilities using [Docker-outsid
 + **permits the jenkins (sudo)user to run `docker` without the `sudo` prefix**
 
 **The final point is specific to this implementation and provides Docker functions within Jenkins workflows.**
-
+```groovy
+node {
+  def maven = docker.image('maven:latest')
+  maven.pull() // make sure we have the latest available from Docker Hub
+  sh 'docker run --rm maven mvn --version'
+}```
 **Important note: This image uses the latest Docker distribution and the host's Docker installation must be the same version.**
 
 
