@@ -1,4 +1,4 @@
-# Jenkins + DOOD (docker-Outside-Of-Docker)
+# Jenkins + DOOD (Docker-Outside-Of-Docker)
 
 This Jenkins Docker image provides Docker*ish* capabilities using [Docker-outside-of-Docker ](http://container-solutions.com/running-docker-in-jenkins-in-docker/) (dood), which allows you to run any Docker container in your Jenkins build script.  This image creates Docker sibling containers rather than children which would be created if [Docker-In-Docker](http://jpetazzo.github.io/2015/09/03/do-not-use-docker-in-docker-for-ci/) (dind) was used. Some advantages of dood over dind: 
 + **enables sharing of images with host OS** 
