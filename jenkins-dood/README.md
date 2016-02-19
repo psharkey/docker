@@ -1,13 +1,16 @@
 ![alt text](http://4.bp.blogspot.com/-urlgbQdlNho/U0PLqTgTH9I/AAAAAAAALkU/jiax1dIdER4/s1600/Capture+d%E2%80%99e%CC%81cran+2014-04-08+a%CC%80+12.12.37.png)
 # Jenkins + DOOD (Docker-Outside-Of-Docker)
 
-This Jenkins Docker image provides Docker*ish* capabilities using [Docker-outside-of-Docker ](http://container-solutions.com/running-docker-in-jenkins-in-docker/) (dood), which allows you to run any Docker container in your Jenkins build script.  This image creates Docker sibling containers rather than children which would be created if [Docker-In-Docker](http://jpetazzo.github.io/2015/09/03/do-not-use-docker-in-docker-for-ci/) (dind) was used. Some advantages of dood over dind: 
+This Jenkins Docker image provides Docker*ish* capabilities using [Docker-outside-of-Docker ](http://container-solutions.com/running-docker-in-jenkins-in-docker/) (dood), which allows you to run any Docker container in your Jenkins build script. This image creates Docker sibling containers rather than children which would be created if [Docker-In-Docker](http://jpetazzo.github.io/2015/09/03/do-not-use-docker-in-docker-for-ci/) (dind) was used. Some advantages of dood over dind: 
 + **enables sharing of images with host OS** 
   * eliminates storing images multiple times
   * makes it possible for Jenkins to automate local image creation
 + eliminate the need for supervisord (which means multiple processes)
 + eliminates a virtualization layer (lxc)
 + allows greater flexibility at runtime
++ **permits the jenkins (sudo)user to run `docker` without the `sudo` prefix**
+
+**The final point is specific to this implementation and provides Docker functions within Jenkins workflows.**
 
 **Important note: This image uses the latest Docker distribution and the host's Docker installation must be the same version.**
 
@@ -46,7 +49,6 @@ jenkins-dood(){
                 -v $HOME/Workspace/.jenkins/.ssh:/var/lib/jenkins/.ssh \
                 -v /dev/urandom:/dev/random \
                 -v /var/run/docker.sock:/var/run/docker.sock \
-                --add-host='contd.cleo.com:10.10.1.57' \
                 --name jenkins-dood \
                 -p $LOCAL_PORT:8080 \
                 jenkins-dood

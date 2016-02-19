@@ -11,7 +11,7 @@
   <projectNamingStrategy class="jenkins.model.ProjectNamingStrategy$DefaultProjectNamingStrategy"/>
   <workspaceDir>${ITEM_ROOTDIR}/workspace</workspaceDir>
   <buildsDir>${ITEM_ROOTDIR}/builds</buildsDir>
-  <systemMessage>Jenkins with DinD (Docker In Docker) and InstallAnywhere</systemMessage>
+  <systemMessage>Jenkins with DooD (Docker outside of Docker)</systemMessage>
   <jdks>
     <jdk>
       <name>Default</name>
