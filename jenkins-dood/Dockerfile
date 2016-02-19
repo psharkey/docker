@@ -36,7 +36,7 @@ RUN echo "jenkins ALL=NOPASSWD: ALL" >> /etc/sudoers \
 	&& printf '#!/bin/bash\nsudo docker.bin "$@"\n' > /usr/bin/docker \
 	&& chmod +x /usr/bin/docker
 
-# Copy basic configuration & any jobs into jenkins
+# Copy basic configuration into jenkins
 COPY config.xml hudson.tasks.Ant.xml hudson.tasks.Maven.xml plugins.txt $JENKINS_HOME/
 
 # Install Jenkins plugins from the specified list
@@ -45,7 +45,6 @@ COPY plugins.sh /usr/local/bin/plugins.sh
 COPY jobs/. $JENKINS_HOME/jobs
 RUN chmod +x /usr/local/bin/plugins.sh; sleep 1 \
 	&& /usr/local/bin/plugins.sh $JENKINS_HOME/plugins.txt \
-	&& ln -s "$JENKINS_HOME/jobs/InstallerBuild/workspace/Installs/VM Packs" $JENKINS_HOME/vm-packs \
 	&& chown -R jenkins:jenkins /var/lib/jenkins
  
 # Expose Jenkins default port
