@@ -45,7 +45,6 @@ A message is displayed showing the Jenkins URL to open in a browser.
 ```bash
 jenkins-dood(){
         x11host
-
         LOCAL_PORT=11080
 
         docker run -d \
@@ -57,8 +56,8 @@ jenkins-dood(){
                 --name jenkins-dood \
                 -p $LOCAL_PORT:8080 \
                 jenkins-dood
-        VBOX_IP=$(docker-machine ls | grep -F '*' | awk '{print $5}' | cut -f2 -d":")
-        echo "Jenkins started at: http:$VBOX_IP:$LOCAL_PORT"
+	VBOX_IP=$(docker-machine ip $(docker-machine active))
+	echo "Jenkins started at: http://$VBOX_IP:$LOCAL_PORT"
 }
 ```
 
@@ -68,11 +67,9 @@ The `x11_host` helper function simply creates an environment variable using the 
 # Define a variable to use for the X11 host IP
 x11host(){
         ACTIVE_MACHINE=$(docker-machine active)
-        X11HOST="$(docker-machine inspect $ACTIVE_MACHINE \
-        | grep HostOnlyCIDR \
-        | awk '{print $2}' \
-        | sed 's/"//g' \
-        | cut -f1 -d"/")"
+        X11HOST=$(docker-machine inspect $ACTIVE_MACHINE \
+                --format={{.Driver.HostOnlyCIDR}} \
+                | cut -d'/' -f1)
 }
 ```
 
