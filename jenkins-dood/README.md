@@ -45,7 +45,6 @@ A message is displayed showing the Jenkins URL to open in a browser.
 ```bash
 jenkins-dood(){
         x11host
-
         LOCAL_PORT=11080
 
         docker run -d \
@@ -57,8 +56,8 @@ jenkins-dood(){
                 --name jenkins-dood \
                 -p $LOCAL_PORT:8080 \
                 jenkins-dood
-        VBOX_IP=docker-machine ip $(docker-machine active)
-        echo "Jenkins started at: http:$VBOX_IP:$LOCAL_PORT"
+	VBOX_IP=$(docker-machine ip $(docker-machine active))
+	echo "Jenkins started at: http://$VBOX_IP:$LOCAL_PORT"
 }
 ```
 
