@@ -1,4 +1,4 @@
-FROM ubuntu
+FROM alpine:3.3
 
 # Setup environment variables
 ENV HOME=/root \
@@ -8,16 +8,19 @@ ENV HOME=/root \
 	LC_ALL=C.UTF-8 \
 	DISPLAY=:0.0
 
+RUN echo "http://dl-2.alpinelinux.org/alpine/edge/testing" >> /etc/apk/repositories; \
+  echo "http://dl-3.alpinelinux.org/alpine/edge/testing" >> /etc/apk/repositories; \
+  echo "http://dl-4.alpinelinux.org/alpine/edge/testing" >> /etc/apk/repositories; \
+  echo "http://dl-5.alpinelinux.org/alpine/edge/testing" >> /etc/apk/repositories
+
 # Install git, supervisor, VNC, & X11 packages
-RUN apt-get update && apt-get install -y \ 
+RUN apk --update --upgrade add \
+	bash \
 	git \
 	supervisor \
-	xvfb \
-	x11-apps \
 	x11vnc \
-  && apt-get clean \
-  && rm -rf /var/lib/apt/lists/* \
-  && rm -rf /tmp/*
+	xterm \
+	xvfb
 
 # Clone noVNC from github
 RUN git clone https://github.com/kanaka/noVNC.git /root/noVNC \
@@ -25,6 +28,9 @@ RUN git clone https://github.com/kanaka/noVNC.git /root/noVNC \
 
 COPY supervisord.conf /etc/supervisor/conf.d/supervisord.conf
 
+# Modify the launch script 'ps -p'
+RUN sed -i -- "s/ps -p/ps -o pid | grep/g" /root/noVNC/utils/launch.sh
+
 EXPOSE 8080
 
-CMD ["/usr/bin/supervisord"]
+CMD ["/usr/bin/supervisord", "-c", "/etc/supervisor/conf.d/supervisord.conf"]
