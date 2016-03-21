@@ -25,8 +25,8 @@ RUN apk --update --upgrade add \
 # Clone noVNC from github
 RUN git clone https://github.com/kanaka/noVNC.git /root/noVNC \
 	&& git clone https://github.com/kanaka/websockify /root/noVNC/utils/websockify
-	&& rm -rf ./noVNC/.git \
-	&& rm -rf ./noVNC/utils/websockify/.git \
+	&& rm -rf /root/noVNC/.git \
+	&& rm -rf /root/noVNC/utils/websockify/.git \
 	&& apk del git
 
 COPY supervisord.conf /etc/supervisor/conf.d/supervisord.conf
