@@ -17,6 +17,7 @@ RUN echo "http://dl-2.alpinelinux.org/alpine/edge/testing" >> /etc/apk/repositor
 RUN apk --update --upgrade add \
 	bash \
 	git \
+	socat \
 	supervisor \
 	x11vnc \
 	xterm \
