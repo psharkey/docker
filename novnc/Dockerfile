@@ -14,6 +14,7 @@ RUN echo "http://dl-3.alpinelinux.org/alpine/edge/testing" >> /etc/apk/repositor
 # Install git, supervisor, VNC, & X11 packages
 RUN apk --update --upgrade add \
 	bash \
+	fluxbox \
 	git \
 	socat \
 	supervisor \
