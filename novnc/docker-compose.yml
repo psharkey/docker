@@ -11,6 +11,10 @@ services:
       - x11
   novnc:  
     image: psharkey/novnc:latest
+    environment:
+      # Adjust to your screen size
+      - DISPLAY_WIDTH=1600
+      - DISPLAY_HEIGHT=968
     ports:
       - "8080:8080"
     networks:
