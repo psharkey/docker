@@ -1,6 +1,6 @@
 FROM alpine:3.3
 
-# Setup environment variables
+# Setup demo environment variables
 ENV HOME=/root \
 	DEBIAN_FRONTEND=noninteractive \
 	LANG=en_US.UTF-8 \
@@ -8,10 +8,8 @@ ENV HOME=/root \
 	LC_ALL=C.UTF-8 \
 	DISPLAY=:0.0
 
-RUN echo "http://dl-2.alpinelinux.org/alpine/edge/testing" >> /etc/apk/repositories; \
-  echo "http://dl-3.alpinelinux.org/alpine/edge/testing" >> /etc/apk/repositories; \
-  echo "http://dl-4.alpinelinux.org/alpine/edge/testing" >> /etc/apk/repositories; \
-  echo "http://dl-5.alpinelinux.org/alpine/edge/testing" >> /etc/apk/repositories
+# x11vnc is in testing repo
+RUN echo "http://dl-3.alpinelinux.org/alpine/edge/testing" >> /etc/apk/repositories
 
 # Install git, supervisor, VNC, & X11 packages
 RUN apk --update --upgrade add \
