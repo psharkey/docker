@@ -1,0 +1,18 @@
+version: '2'
+services:
+  netbeans:
+    image: psharkey/netbeans-8.1:latest
+    environment:
+      - DISPLAY=novnc:0.0
+    depends_on:
+      - novnc
+    networks:
+      - x11
+  novnc:  
+    image: psharkey/novnc:latest
+    ports:
+      - "8080:8080"
+    networks:
+      - x11
+networks:
+  x11:
