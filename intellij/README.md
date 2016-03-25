@@ -33,3 +33,6 @@ x11host(){
 		| cut -f1 -d"/")"
 }
 ```
+
+### X11 Alterantive
+**Refer to [psharkey/novnc](https://hub.docker.com/r/psharkey/novnc/) for an alternative X11 configuration.**
