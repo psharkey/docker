@@ -5,6 +5,7 @@ RUN apt-get update -qq && apt-get install -qqy \
 	apt-transport-https \
 	ca-certificates \
 	curl \
+	git \
 	iptables \
 	libxext-dev libxrender-dev libxtst-dev \
 	ssh-askpass \ 
@@ -13,7 +14,9 @@ RUN apt-get update -qq && apt-get install -qqy \
 	zip
 
 # Install Docker from Docker Inc. repositories.
-RUN curl -L https://get.docker.com/ | sh
+ARG DOCKER_VERSION=1.10.3
+RUN curl -L -O https://get.docker.com/builds/Linux/x86_64/docker-${DOCKER_VERSION}.tgz \
+	&& tar zxf docker-${DOCKER_VERSION}.tgz -C /
 
 # Install Docker Compose
 ENV DOCKER_COMPOSE_VERSION 1.3.3
@@ -32,9 +35,9 @@ RUN wget --progress=bar:force -O - https://jenkins-ci.org/debian/jenkins-ci.org.
 # Make the jenkins user a sudoer
 # Replace the docker binary with a sudo script
 RUN echo "jenkins ALL=NOPASSWD: ALL" >> /etc/sudoers \
-	&& mv /usr/bin/docker /usr/bin/docker.bin \ 
-	&& printf '#!/bin/bash\nsudo docker.bin "$@"\n' > /usr/bin/docker \
-	&& chmod +x /usr/bin/docker
+	&& mv /usr/local/bin/docker /usr/local/bin/docker.bin \ 
+	&& printf '#!/bin/bash\nsudo docker.bin "$@"\n' > /usr/local/bin/docker \
+	&& chmod +x /usr/local/bin/docker
 
 # Copy basic configuration into jenkins
 COPY config.xml hudson.tasks.Ant.xml hudson.tasks.Maven.xml plugins.txt $JENKINS_HOME/
