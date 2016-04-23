@@ -41,7 +41,7 @@
           <id>114b494f-df5d-4435-80c0-a5f163e28446</id>
           <checkoutCredentialsId>5f1a69f3-4591-41cc-ae81-2a2a90fd2e3d</checkoutCredentialsId>
           <repoOwner>CleoDev</repoOwner>
-          <repository></repository>
+          <repository>EFSS</repository>
           <includes>develop</includes>
           <excludes></excludes>
         </source>
