@@ -40,7 +40,7 @@ RUN echo "jenkins ALL=NOPASSWD: ALL" >> /etc/sudoers \
 	&& chmod +x /usr/local/bin/docker
 
 # Copy basic configuration into jenkins
-COPY config.xml hudson.tasks.Ant.xml hudson.tasks.Maven.xml plugins.txt $JENKINS_HOME/
+COPY config.xml credentials.xml hudson.tasks.Ant.xml hudson.tasks.Maven.xml plugins.txt $JENKINS_HOME/
 
 # Install Jenkins plugins from the specified list
 # Install jobs & setup ownership & links
