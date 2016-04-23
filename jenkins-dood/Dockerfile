@@ -49,6 +49,10 @@ COPY jobs/. $JENKINS_HOME/jobs
 RUN chmod +x /usr/local/bin/plugins.sh; sleep 1 \
 	&& /usr/local/bin/plugins.sh $JENKINS_HOME/plugins.txt \
 	&& chown -R jenkins:jenkins /var/lib/jenkins
+
+# Define the workspace - assuming the path does not contain #
+ARG WORKSPACE='${ITEM_ROOTDIR}\/workspace'
+RUN sed -i -- "s#\${ITEM_ROOTDIR}\/workspace#${WORKSPACE}#" $JENKINS_HOME/config.xml
  
 # Expose Jenkins default port
 EXPOSE 8080
