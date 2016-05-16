@@ -27,11 +27,4 @@ RUN wget --progress=bar:force $NETBEANS_URL -O /tmp/netbeans.sh \
         && rm -rf /tmp/* \
         && ln -s $(ls -d /usr/local/netbeans-*) /usr/local/netbeans
 
-# Download & install the unlimited strength policy jars
-RUN curl -L $POLICY_URL -o /tmp/policy.zip \
-		--cookie 'oraclelicense=accept-securebackup-cookie;' \
-	&& JAVA_HOME=$(ls -d /usr/local/jdk1.*) \
-        && unzip -j -o /tmp/policy.zip -d $JAVA_HOME/jre/lib/security \
-	&& rm /tmp/policy.zip
-
 CMD /usr/local/netbeans/bin/netbeans
