@@ -14,7 +14,7 @@ RUN apt-get update && apt-get install -y \
 # NetBeans 8.0.2 + JDK 1.7u80
 #ENV NETBEANS_URL=http://download.oracle.com/otn-pub/java/jdk-nb/7u80-8.0.2/jdk-7u80-nb-8_0_2-linux-x64.sh
 #ENV POLICY_URL=http://download.oracle.com/otn-pub/java/jce/7/UnlimitedJCEPolicyJDK7.zip
-ENV NETBEANS_URL=http://bits.netbeans.org/download/trunk/nightly/latest/bundles/netbeans-trunk-nightly-201605160002-javaee-linux.sh
+ENV NETBEANS_URL=http://bits.netbeans.org/download/trunk/nightly/latest/bundles/netbeans-trunk-nightly-201605160002-javase-linux.sh
 #http://download.oracle.com/otn-pub/java/jdk-nb/8u71-8.1/jdk-8u71-nb-8_1-linux-x64.sh
 ENV POLICY_URL=http://download.oracle.com/otn-pub/java/jce/8/jce_policy-8.zip 
 ENV COOKIE="Cookie: gpw_e24=http%3A%2F%2Fwww.oracle.com%2F; oraclelicense=accept-securebackup-cookie"
