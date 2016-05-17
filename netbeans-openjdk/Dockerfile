@@ -1,4 +1,4 @@
-#
+# 
 # NetBeans Nightly Build + OpenJDK 8 (with Maven 3.3.9)
 #
 FROM maven:3.3.9-jdk-8
@@ -10,10 +10,11 @@ RUN apt-get update && apt-get install -y \
 	&& rm -rf /var/lib/apt/lists/* \
 	&& rm -rf /tmp/*
 
-ARG NETBEANS_URL=http://bits.netbeans.org/download/trunk/nightly/latest/bundles/netbeans-trunk-nightly-201605170002-javase-linux.sh
+ARG NETBEANS_URL=http://bits.netbeans.org/download/trunk/nightly/latest/bundles
 ARG COOKIE="Cookie: gpw_e24=http%3A%2F%2Fwww.oracle.com%2F; oraclelicense=accept-securebackup-cookie"
 
-RUN wget --progress=bar:force $NETBEANS_URL -O /tmp/netbeans.sh \
+RUN wget --progress=bar:force -r --no-parent -A 'netbeans-trunk-nightly-*-javase-linux.sh' \
+        $NETBEANS_URL -O /tmp/netbeans.sh \
         --no-cookies --no-check-certificate --header "$COOKIE" \
         && echo "Installing NetBeans $NETBEANS_VERSION..." \
         && chmod +x /tmp/netbeans.sh; sleep 1 \
