@@ -21,4 +21,4 @@ RUN wget --progress=bar:force $NETBEANS_URL -O /tmp/netbeans.sh \
         && rm -rf /tmp/* \
         && ln -s $(ls -d /usr/local/netbeans-*) /usr/local/netbeans
 
-CMD /usr/local/netbeans/bin/netbeans
+CMD /usr/local/netbeans/bin/netbeans --jdkhome /usr/lib/jvm/java-8-openjdk-amd64
