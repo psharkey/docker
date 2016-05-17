@@ -11,7 +11,7 @@ The following bash function example for Docker/native OS X:
 ```bash
 netbeans(){
         del_stopped netbeans-dev
-	DISPLAY_MAC=`ifconfig en0 | grep "inet " | cut -d " " -f2`:0
+        DISPLAY_MAC=`ifconfig en0 | grep "inet " | cut -d " " -f2`:0
         docker run -d -it \
                 -e DISPLAY=$DISPLAY_MAC \
                 -e "TZ=America/Chicago" \
