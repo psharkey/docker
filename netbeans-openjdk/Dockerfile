@@ -1,7 +1,7 @@
 # 
-# NetBeans Nightly Build + OpenJDK 8 (with Maven 3.3.9)
+# NetBeans Nightly Build + OpenJDK
 #
-FROM maven:3.3.9-jdk-8
+FROM maven
 
 # Install X11 tools and those needed here for downloads.
 RUN apt-get update && apt-get install -y \ 
