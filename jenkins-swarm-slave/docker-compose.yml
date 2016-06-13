@@ -4,8 +4,6 @@ services:
     image: psharkey/jenkins-dood
     environment:
       - TZ=America/Chicago
-    extra_hosts:
-      - "contd.cleo.com:10.10.1.57"
     ports:
       - "10080:8080"
     user: root
@@ -21,8 +19,6 @@ services:
     image: psharkey/jenkins-swarm-slave
     environment:
       - TZ=America/Chicago
-    extra_hosts:
-      - "contd.cleo.com:10.10.1.57"
     user: root
     volumes:
       - /dev/urandom:/dev/random
