@@ -4,7 +4,7 @@ From [psharkey/toolbox](https://hub.docker.com/r/psharkey/toolbox/) with [Jenkin
 
 ## Example Usage
 ___
-A version of the [V2 docker-compose example](https://github.com/psharkey/docker/blob/jenkins-swarm-slave/jenkins-swarm-slave/docker-compose.yml) is shown below to illustrate how this image can be used.
+A version of the [V2 docker-compose example](https://github.com/psharkey/docker/blob/jenkins-swarm-slave/jenkins-swarm-slave/docker-compose.yml) is avaliable to illustrate how this image can be used.
 
 1. Start the containters using `docker-compose up -d`
 2. Use `docker ps -f name=jenkinsswarmslave_master_1 --format "{{.Ports}}"` to find the **address:port** for Jenkins (**0.0.0.0:10080** for the following example)- 
