@@ -9,7 +9,7 @@ TBD
 
 ## On DockerHub / GitHub
 
-* DockerHub [psharkey/novnc](https://hub.docker.com/r/psharkey/eclipse/)
+* DockerHub [psharkey/eclipse](https://hub.docker.com/r/psharkey/eclipse/)
 * GitHub [psharkey/docker/eclipse](https://github.com/psharkey/docker/tree/eclipse/eclipse)
 
 ## Thanks
