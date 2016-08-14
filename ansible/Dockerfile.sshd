@@ -4,7 +4,10 @@
 FROM	ubuntu
 
 RUN	apt-get update && apt-get install -y \
-		openssh-server rsync sudo
+		openssh-server \
+		python-simplejson \
+		rsync \
+		sudo
 
 EXPOSE	22
 
