@@ -4,22 +4,30 @@ Ansible installation on Alpine 3.4. Based on [williamyey/ansible](https://hub.do
 
 ## Remote System Requirements
 
-The remote system must be preppared according to the type:
+The remote system must be prepared according to the type:
 
 * [Windows](http://docs.ansible.com/ansible/intro_windows.html#windows-system-prep)
 * [SSH](http://docs.ansible.com/ansible/intro_getting_started.html#remote-connection-information)
+* Docker - see [Dockerfile.sshd](Dockerfile.sshd) for an example minimal setup
 
-## Onbuild
+## Example Ansible Configuration
 
-### Onbuild Image
+* [ansible.cfg](ansible.cfg) - Ansible global configuration parameters
+* [hosts](hosts) - lists of hosts to operate against
+* [windows.yml](group_vars/windows.yml) - configuration specific to the `windows` group in [hosts](hosts/#L1)
+* [docker.yml](group_vars/docker.yml) - configuration specific to the `docker` group in [hosts](hosts/#L3)
 
-From the directory containing the Dockerfile:
+## Local Ansible Build
+
+### Local Image
+
+From the directory containing the Dockerfile.local:
 
 ```bash
-docker build -t ansible -f Dockerfile.onbuild .
+docker build -t ansible -f Dockerfile.local .
 ```
 
-### Onbuild Test
+### Local Test
 
 Use the `ansible --version` command to perform a simple test which displays the Ansible version in the container: 
 
@@ -32,20 +40,24 @@ $
 ```
 
 ## Docker Test Target
+A test target in Docker may be used for further provisioning tests and will be used here to test the [Local Image](#local-image)
 
 ### Test Target Build
+The Docker test target image is built using [Dockerfile.sshd](Dockerfile.sshd):
 
 ```bash
 docker build -t sshd -f Dockerfile.sshd .
 ```
 
 ### Test Target Run
+The test target container may then be started in detached mode:
 
 ```bash
 docker run -d --name sshd -p 22 sshd
 ```
 
-## Linked Ping Test
+### Linked Ping Test
+The test target is then linked (`--link sshd`) to a Ansible container to run a simple ping command (`ansible docker -m ping`) using Ansible and the [docker](hosts/#L3) group. 
 
 ```bash
 # docker run --rm -it --link sshd ansible ansible docker -m ping
@@ -55,7 +67,6 @@ sshd | SUCCESS => {
 }
 #
 ```
-
 
 ## Executing Commands on Windows
 
