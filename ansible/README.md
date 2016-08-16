@@ -60,12 +60,12 @@ docker run -d --name sshd -p 22 sshd
 The test target is then linked (`--link sshd`) to a Ansible container to run a simple ping command (`ansible docker -m ping`) using Ansible and the [docker](hosts/#L3) group. 
 
 ```bash
-# docker run --rm -it --link sshd ansible ansible docker -m ping
+$ docker run --rm -it --link sshd ansible ansible docker -m ping
 sshd | SUCCESS => {
     "changed": false, 
     "ping": "pong"
 }
-#
+$
 ```
 
 ## Executing Commands on Windows
