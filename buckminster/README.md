@@ -1,6 +1,6 @@
 # Buckminster
 
-A headless [Buckminster, Component Assembly Project](http://www.eclipse.org/buckminster/) image.
+A headless [Buckminster, Component Assembly Project](http://www.eclipse.org/buckminster/) image. Based on the [Buckminster Headless Product](http://www.eclipse.org/buckminster/downloads.html) installation instructions.
 
 ## Usage
 
