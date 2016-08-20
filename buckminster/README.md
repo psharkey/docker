@@ -58,6 +58,5 @@ $
 ```
 
 ## On DockerHub / GitHub
-___
 * DockerHub [psharkey/buckminster](https://hub.docker.com/r/psharkey/buckminster)
 * GitHub [psharkey/docker/buckminster](https://github.com/psharkey/docker/tree/buckminster/buckminster)
