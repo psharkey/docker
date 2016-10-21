@@ -5,6 +5,7 @@ RUN	apk --update add \
 		python \
 		py-pip \ 
 		openssl \
+		openssh-client \
 		ca-certificates \
     	&& apk --update add --virtual \
 		build-dependencies \
