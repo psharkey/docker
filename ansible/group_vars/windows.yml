@@ -1,8 +1,8 @@
 # it is suggested that these be encrypted with ansible-vault:
 # ansible-vault edit group_vars/windows.yml
 
-ansible_user: YourWindowsUser
-ansible_password: YourWindowsPassword
+ansible_user: Administrator
+ansible_password: Adm1n11
 ansible_port: 5986
 ansible_connection: winrm
 # The following is necessary for Python 2.7.9+ when using default WinRM self-signed certificates:

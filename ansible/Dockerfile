@@ -17,7 +17,7 @@ RUN	apk --update add \
 		pip \
 		cffi \
 	&& pip install \
-		ansible==2.1.1.0 \
+		ansible==2.2.0.0 \
 		pywinrm>=0.1.1 \
 	&& apk del build-dependencies \
 	&& rm -rf /var/cache/apk/*
