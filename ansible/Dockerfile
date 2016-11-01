@@ -19,6 +19,7 @@ RUN	apk --update add \
 	&& pip install \
 		ansible==2.2.0.0 \
 		pywinrm>=0.1.1 \
+		pyvmomi==6.0.0.2016.6 \
 	&& apk del build-dependencies \
 	&& rm -rf /var/cache/apk/*
 
