@@ -7,6 +7,7 @@ RUN	apk --update add \
 		openssl \
 		openssh-client \
 		ca-certificates \
+                sshpass \
     	&& apk --update add --virtual \
 		build-dependencies \
 		python-dev \
