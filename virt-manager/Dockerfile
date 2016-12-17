@@ -5,6 +5,4 @@ RUN  apk --update add \
          libxtst \
          libxrender \
          virt-manager \
-    && apk del build-dependencies \
-    && rm -rf /tmp/* \
     && rm -rf /var/cache/apk/*
