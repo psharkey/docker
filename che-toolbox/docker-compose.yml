@@ -1,0 +1,4 @@
+version: '2'
+services:
+  toolbox:
+    image: psharkey/che-toolbox:latest
