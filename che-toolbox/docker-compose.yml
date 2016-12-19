@@ -1,4 +1,2 @@
-version: '2'
-services:
-  toolbox:
-    image: psharkey/che-toolbox:latest
+toolbox:
+  image: psharkey/che-toolbox:latest
