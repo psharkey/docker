@@ -1,2 +1,1 @@
-toolbox:
-  image: psharkey/che-toolbox:latest
+image: psharkey/che-toolbox:latest
