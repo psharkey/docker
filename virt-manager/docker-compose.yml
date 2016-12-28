@@ -3,7 +3,7 @@ services:
   virt-manager:
     # build: .
     image: psharkey/virt-manager:latest
-    # command: [additional, comma, separated, parameters]
+    command: sleep 1d
     volumes:
       - /dev/urandom:/dev/random
     environment:
