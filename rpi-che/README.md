@@ -11,4 +11,4 @@ ___
 
 # Thanks
 ___
-Based on [iRUNNING ECLIPSE CHE ON A RASPBERRY PI](https://blog.benjamin-cabe.com/2016/04/01/running-eclipse-che-on-a-raspberry-pi).
+Based on [RUNNING ECLIPSE CHE ON A RASPBERRY PI](https://blog.benjamin-cabe.com/2016/04/01/running-eclipse-che-on-a-raspberry-pi).
