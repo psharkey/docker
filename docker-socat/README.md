@@ -9,13 +9,13 @@ This `Dockerfile` builds a simple container that can use the new `--privileged` 
 Building can be performed with a simple `docker build`:
 
 ```
-docker build -t docker-socat .
+docker build -t psharkey/docker-socat .
 ```
 
 > **NOTE**: This **requires** Docker 1.11 for the `--privileged` support for user namespaced-enabled daemon.
 
 ```bash
-docker run --rm -it --name docker-socat --privileged --userns=host -v /var/run/docker.sock:/var/run/docker.sock docker-socat
+docker run --rm -it --name docker-socat --privileged --userns=host -v /var/run/docker.sock:/var/run/docker.sock psharkey/docker-socat
 ```
 
 Note that I am not portmapping the TCP listener to the host as the expectation is that inter-container communication is on and other user namespaced containers are the consumers of this service and will connect to the container IP at port :2375 for `DOCKER_HOST`.  Of course you could portmap this to the host, but this exposes your Docker engine endpoint to a broad audience with all the usual concerns and risks for doing so.
