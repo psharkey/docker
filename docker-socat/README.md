@@ -71,10 +71,8 @@ $
 ```
 
 ## On DockerHub / GitHub
-___
 * DockerHub [psharkey/docker-socat](https://hub.docker.com/r/psharkey/docker-socat/)
-* GitHub [psharkey/docker/docker-socat](https://github.com/psharkey/docker/tree/master/novnc)
+* GitHub [psharkey/docker/docker-socat](https://github.com/psharkey/docker/tree/docker-socat/docker-socat)
 
 # Thanks
-___
 Based on [rancher/docker-socat](https://hub.docker.com/r/rancher/socat-docker/), [estesp/Dockerfiles](https://github.com/estesp/Dockerfiles/blob/master/dockersocat/README.md), and [bobrick/socat](https://hub.docker.com/r/bobrik/socat/).
