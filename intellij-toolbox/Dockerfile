@@ -33,5 +33,3 @@ RUN groupadd -f -g ${TOOLBOX_GID} ${TOOLBOX_GROUP} \
 	&& printf '#!/bin/bash\nsudo /usr/bin/docker "$@"\n' > ${TOOLBOX_HOME}/docker \
 	&& printf '#!/bin/bash\nsudo /usr/local/bin/docker-compose "$@"\n' > ${TOOLBOX_HOME}/docker-compose \
 	&& chmod +x ${TOOLBOX_HOME}/docker*
-
-CMD ["/opt/intellij/bin/idea.sh"]

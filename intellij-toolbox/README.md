@@ -1,6 +1,6 @@
-# IntelliJ IDEA + OpenJDK 8
+# IntelliJ IDEA + OpenJDK 8 + Docker + Node
 
-### Example usage:
+## Example usage:
 ```bash
 intellij-toolbox(){
         displayMac
@@ -21,14 +21,14 @@ intellij-toolbox(){
 }
 ```
 
-### Parameter explanation:
+## Parameter explanation:
 * Set the `DISPLAY` variable using the value (from the helper function below)
 * Set the timezone (to your local value)
 * Map a volume to persist the IntelliJ IDEA preferences
 * Map volumes from `github` and `m2` data containers created for [toolbox](https://github.com/psharkey/docker/tree/master/toolbox)
 * Shares the docker.sock via a volume & with another container on the same network 
 
-### X11 helper function:
+## X11 helper function:
 ```bash
 displayMac() {
         DISPLAY_MAC=`ifconfig en0 | grep "inet " | cut -d " " -f2`:0
@@ -45,5 +45,5 @@ dockersock-socat(){
 }
 ```
 
-### X11 Alternative
+## X11 Alternative
 **Refer to [psharkey/novnc](https://hub.docker.com/r/psharkey/novnc/) for an alternative X11 configuration.**
