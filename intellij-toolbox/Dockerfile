@@ -27,9 +27,4 @@ ENV PATH=${TOOLBOX_HOME}:$PATH
 # Change the user's profile to execute the docker binaries with sudo scripts
 RUN groupadd -f -g ${TOOLBOX_GID} ${TOOLBOX_GROUP} \
 	&& useradd -d ${TOOLBOX_HOME} -u ${TOOLBOX_UID} -g ${TOOLBOX_GID} -m -s /bin/bash ${TOOLBOX_USER} \
-	&& chown -R ${TOOLBOX_USER}:${TOOLBOX_GROUP} ${TOOLBOX_HOME} \
-	&& echo "root ALL=NOPASSWD: ALL" >> /etc/sudoers \
-	&& echo "${TOOLBOX_USER} ALL=NOPASSWD: ALL" >> /etc/sudoers \
-	&& printf '#!/bin/bash\nsudo /usr/bin/docker "$@"\n' > ${TOOLBOX_HOME}/docker \
-	&& printf '#!/bin/bash\nsudo /usr/local/bin/docker-compose "$@"\n' > ${TOOLBOX_HOME}/docker-compose \
-	&& chmod +x ${TOOLBOX_HOME}/docker*
+	&& chown -R ${TOOLBOX_USER}:${TOOLBOX_GROUP} ${TOOLBOX_HOME}
