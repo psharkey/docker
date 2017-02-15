@@ -19,6 +19,8 @@ RUN	apk --update add \
 		cffi \
 	&& pip install \
 		ansible==2.2.0.0 \
+                boto==2.45.0 \
+ 		boto3==1.4.4 \
 		pywinrm>=0.1.1 \
 		pyvmomi==6.0.0.2016.6 \
 		pysphere>=0.1.7 \
