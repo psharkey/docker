@@ -3,11 +3,13 @@ FROM alpine:3.4
 RUN	apk --update add \
 		sudo \
 		python \
-		py-pip \ 
+		py-lxml \
+		py-pip \
 		openssl \
 		openssh-client \
 		ca-certificates \
                 sshpass \
+		zip \
     	&& apk --update add --virtual \
 		build-dependencies \
 		python-dev \
