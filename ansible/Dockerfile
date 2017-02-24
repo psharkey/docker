@@ -1,14 +1,15 @@
 FROM alpine:3.4
 
 RUN	apk --update add \
-		sudo \
+		ca-certificates \
+		openssl \
+		openssh-client \
+		p7zip \
 		python \
 		py-lxml \
 		py-pip \
-		openssl \
-		openssh-client \
-		ca-certificates \
-                sshpass \
+		sshpass \
+                sudo \
 		zip \
     	&& apk --update add --virtual \
 		build-dependencies \
