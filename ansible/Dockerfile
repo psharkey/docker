@@ -1,6 +1,7 @@
 FROM alpine:3.4
 
 RUN	apk --update add \
+		bash \
 		ca-certificates \
 		openssl \
 		openssh-client \
@@ -25,6 +26,7 @@ RUN	apk --update add \
 		boto==2.45.0 \
  		boto3==1.4.4 \
 		docker-py==1.10.6 \
+		dopy==0.3.7 \
 		pywinrm>=0.1.1 \
 		pyvmomi==6.0.0.2016.6 \
 		pysphere>=0.1.7 \
@@ -37,4 +39,5 @@ RUN	mkdir -p /etc/ansible \
 
 ONBUILD	WORKDIR	/tmp
 ONBUILD	COPY 	. /tmp
-ONBUILD	RUN	ansible -c local -m setup all
+ONBUILD	RUN	ansible -c local -m setup all > /dev/null
+CMD ["bash"]
