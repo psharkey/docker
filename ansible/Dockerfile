@@ -3,6 +3,7 @@ FROM alpine:3.4
 RUN	apk --update add \
 		bash \
 		ca-certificates \
+		git \
 		openssl \
 		openssh-client \
 		p7zip \
@@ -10,7 +11,8 @@ RUN	apk --update add \
 		py-lxml \
 		py-pip \
 		sshpass \
-                sudo \
+		sudo \
+                subversion \
 		zip \
     	&& apk --update add --virtual \
 		build-dependencies \
