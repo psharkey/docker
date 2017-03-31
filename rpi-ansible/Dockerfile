@@ -1,4 +1,4 @@
-FROM cmosh/alpine-arm:edge
+FROM cmosh/alpine-arm:3.4
 
 RUN ["cross-build-start"]
 
