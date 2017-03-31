@@ -1,0 +1,3 @@
+FROM psharkey/ansible-alpine
+
+WORKDIR /tmp
