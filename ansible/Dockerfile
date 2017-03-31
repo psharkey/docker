@@ -10,6 +10,7 @@ RUN	apk --update add \
 		python \
 		py-lxml \
 		py-pip \
+		rsync \
 		sshpass \
 		sudo \
                 subversion \
