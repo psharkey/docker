@@ -1,0 +1,27 @@
+version: '2'
+services:
+  virt-manager:
+    # build: .
+    image: psharkey/virt-manager:latest
+    # command: [additional, comma, separated, parameters]
+    volumes:
+      - /dev/urandom:/dev/random
+    environment:
+      - DISPLAY=novnc:0.0
+      - TZ="America/Chicago"
+    depends_on:
+      - novnc
+    networks:
+      - x11
+  novnc:  
+    image: psharkey/novnc:latest
+    # If needed, uncomment the following & adjust to your screen size
+    # environment:
+    #  - DISPLAY_WIDTH=1600
+    #  - DISPLAY_HEIGHT=968
+    ports:
+      - "8080:8080"
+    networks:
+      - x11
+networks:
+  x11:
