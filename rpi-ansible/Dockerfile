@@ -1,6 +1,4 @@
-FROM cmosh/alpine-arm:3.4
-
-RUN ["cross-build-start"]
+FROM hypriot/rpi-alpine:3.4
 
 RUN	apk --update add \
 		bash \
@@ -41,8 +39,6 @@ RUN	apk --update add \
 RUN	mkdir -p /etc/ansible \
 	&& echo 'localhost' > /etc/ansible/hosts \
 	&& mkdir -p ~/.ssh && touch ~/.ssh/known_hosts \
-
-RUN ["cross-build-end"]
 
 ONBUILD	WORKDIR	/tmp
 ONBUILD	COPY 	. /tmp
