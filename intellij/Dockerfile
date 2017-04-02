@@ -12,6 +12,7 @@ RUN apt-get update \
 # Install OpenJDK 8, X11 libraries, and wget
 RUN add-apt-repository ppa:webupd8team/java && apt-get update \
 	&& apt-get install -y \ 
+		curl \
 		libxext-dev libxrender-dev libxtst-dev \
 		openjdk-8-jdk \
 		wget \
