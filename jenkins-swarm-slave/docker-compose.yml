@@ -1,0 +1,36 @@
+version: '2'
+services:
+  master:
+    image: psharkey/jenkins-dood
+    environment:
+      - TZ=America/Chicago
+    ports:
+      - "10080:8080"
+    user: root
+    volumes_from:
+      - data
+    volumes:
+      - /dev/urandom:/dev/random
+      - /var/run/docker.sock:/var/run/docker.sock
+      - $HOME/.ssh:/root/.ssh:ro
+    networks:
+      - swarm
+  slave:
+    image: psharkey/jenkins-swarm-slave
+    environment:
+      - TZ=America/Chicago
+    user: root
+    volumes:
+      - /dev/urandom:/dev/random
+      - /var/run/docker.sock:/var/run/docker.sock
+      - $HOME/.ssh:/root/.ssh:ro
+    networks:
+      - swarm
+  data:
+    image: psharkey/jenkins-dood
+    command: mkdir -p $HOME/workspace
+    user: root
+    volumes:
+       - $HOME/workspace:$HOME/workspace
+networks:
+  swarm:

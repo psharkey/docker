@@ -29,11 +29,18 @@ Build this image (from the directory containing the Dockerfile):
 docker build -t jenkins-dood .
 ```
 
+Simple run example:
+
+```
+docker run --rm -it -p 8080:8080 --name jenkins-dood psharkey/jenkins-dood
+```
+
 Run it with mounted directory from host:
 
 ```
-docker run -d -p 8080:8080 -v /your/path:/var/lib/jenkins --name jenkins-dood jenkins-dood
+docker run -d -p 8080:8080 -v /your/path:/var/lib/jenkins --name jenkins-dood psharkey/jenkins-dood
 ```
+
 Bash function example with additional arguments including:
 + `-e "TZ=America/Chicago"` sets the timezone
 + -`v $HOME/Workspace/.jenkins/.ssh:/var/lib/jenkins/.ssh` for sharing your ssh key with the container
@@ -56,7 +63,7 @@ jenkins-dood(){
                 -v /var/run/docker.sock:/var/run/docker.sock \
                 --name jenkins-dood \
                 -p $LOCAL_PORT:8080 \
-                jenkins-dood
+                psharkey/jenkins-dood
 	VBOX_IP=$(docker-machine ip $(docker-machine active))
 	echo "Jenkins started at: http://$VBOX_IP:$LOCAL_PORT"
 }
