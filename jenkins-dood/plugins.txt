@@ -66,6 +66,7 @@ ssh-credentials: 1.11
 ssh-slaves: 1.9
 structs: 1.1
 subversion: 2.5
+swarm: 2.1
 tap: 1.18
 thinBackup: 1.7.4
 token-macro: 1.12.1
