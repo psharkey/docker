@@ -14,7 +14,7 @@ ARG NETBEANS_URL=http://bits.netbeans.org/download/trunk/nightly/latest/bundles
 ARG COOKIE="Cookie: gpw_e24=http%3A%2F%2Fwww.oracle.com%2F; oraclelicense=accept-securebackup-cookie"
 
 RUN wget --progress=bar:force -O /tmp/netbeans.sh \
-	$NETBEANS_URL/netbeans-trunk-nightly-$(date +"%Y%m%d")0002-javase-linux.sh \
+	$NETBEANS_URL/netbeans-trunk-nightly-$(date +"%Y%m%d")0001-javase-linux.sh \
         --no-cookies --no-check-certificate --header "$COOKIE" \
         && echo "Installing NetBeans..." \
         && chmod +x /tmp/netbeans.sh; sleep 1 \
