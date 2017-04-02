@@ -20,9 +20,9 @@ RUN groupadd -f -g ${TOOLBOX_GID} ${TOOLBOX_GROUP} \
 
 # Become a swarm client
 ARG SWARM_HOME=./
-ARG SWARM_VERSION=2.1
+ARG SWARM_VERSION=2.2
 RUN wget --progress=bar:force \
-		http://maven.jenkins-ci.org/content/repositories/releases/org/jenkins-ci/plugins/swarm-client/${SWARM_VERSION}/swarm-client-${SWARM_VERSION}-jar-with-dependencies.jar \
+		https://repo.jenkins-ci.org/releases/org/jenkins-ci/plugins/swarm-client/${SWARM_VERSION}/swarm-client-${SWARM_VERSION}-jar-with-dependencies.jar \
 		-O ${SWARM_HOME}/swarm-client-jar-with-dependencies.jar \
 	&& chmod +x ${SWARM_HOME}/swarm-client-jar-with-dependencies.jar
 
