@@ -1,4 +1,4 @@
-# InteiilJ IDEA + OpenJDK 8
+# IntelliJ IDEA + OpenJDK 8
 
 ### Example usage:
 ```bash
@@ -33,3 +33,6 @@ x11host(){
 		| cut -f1 -d"/")"
 }
 ```
+
+### X11 Alternative
+**Refer to [psharkey/novnc](https://hub.docker.com/r/psharkey/novnc/) for an alternative X11 configuration.**

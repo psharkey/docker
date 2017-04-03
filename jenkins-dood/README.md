@@ -16,7 +16,8 @@ node {
   def maven = docker.image('maven:latest')
   maven.pull() // make sure we have the latest available from Docker Hub
   sh 'docker run --rm maven mvn --version'
-}```
+}
+```
 **Important note: This image uses the latest Docker distribution and the host's Docker installation must be the same version.**
 
 
@@ -82,3 +83,5 @@ jenkins-dood
 Jenkins started at: http://192.168.99.101:11080
 $
 ```
+
+**Refer to [psharkey/novnc](https://hub.docker.com/r/psharkey/novnc/) for an alternative X11 configuration.**
