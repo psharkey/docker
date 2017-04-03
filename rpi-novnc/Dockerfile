@@ -16,6 +16,7 @@ RUN apt-get update && apt-get install -y \
 	fluxbox \
 	git \
 	net-tools \
+	openssh-client \
 	socat \
 	supervisor \
 	x11vnc \
