@@ -25,7 +25,7 @@ RUN	apk --update add \
 		pip \
 		cffi \
 	&& pip install \
-		ansible==2.2.1.0 \
+		ansible==2.3.0.0 \
 		boto==2.45.0 \
  		boto3==1.4.4 \
 		docker-py==1.10.6 \
