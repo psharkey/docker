@@ -26,6 +26,7 @@ RUN	apk --update add \
 		cffi \
 	&& pip install \
 		ansible==2.3.0.0 \
+		awscli==1.11.85 \
 		boto==2.45.0 \
  		boto3==1.4.4 \
 		docker-py==1.10.6 \
@@ -36,9 +37,14 @@ RUN	apk --update add \
 	&& apk del build-dependencies \
 	&& rm -rf /var/cache/apk/*
 
+ENV	TERRAFORM_URL=https://releases.hashicorp.com/terraform/0.9.5/terraform_0.9.5_linux_amd64.zip
 RUN	mkdir -p /etc/ansible \
 	&& echo 'localhost' > /etc/ansible/hosts \
 	&& mkdir -p ~/.ssh && touch ~/.ssh/known_hosts \
+	&& wget $TERRAFORM_URL -O /tmp/terraform.zip \
+	&& unzip /tmp/terraform.zip \
+	&& mv terraform /usr/local/bin \
+	&& rm -rf /tmp/*
 
 ONBUILD	WORKDIR	/tmp
 ONBUILD	COPY 	. /tmp
