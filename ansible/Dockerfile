@@ -38,6 +38,10 @@ RUN	apk --update add \
 	&& apk del build-dependencies \
 	&& rm -rf /var/cache/apk/*
 
+RUN	mkdir -p /etc/ansible \		
+	&& echo 'localhost' > /etc/ansible/hosts \		
+	&& mkdir -p ~/.ssh && touch ~/.ssh/known_hosts
+
 ONBUILD	WORKDIR	/tmp
 ONBUILD	COPY 	. /tmp
 ONBUILD	RUN	ansible -c local -m setup all > /dev/null
