@@ -1,9 +1,10 @@
-FROM alpine:3.4
+FROM alpine:3.6
 
 RUN	apk --update add \
 		bash \
 		ca-certificates \
 		git \
+		less \
 		openssl \
 		openssh-client \
 		p7zip \
@@ -13,7 +14,8 @@ RUN	apk --update add \
 		rsync \
 		sshpass \
 		sudo \
-                subversion \
+		subversion \
+		vim \
 		zip \
     	&& apk --update add --virtual \
 		build-dependencies \
@@ -25,7 +27,8 @@ RUN	apk --update add \
 		pip \
 		cffi \
 	&& pip install \
-		ansible==2.2.1.0 \
+		ansible==2.3.0.0 \
+		awscli==1.11.85 \
 		boto==2.45.0 \
  		boto3==1.4.4 \
 		docker-py==1.10.6 \
@@ -36,9 +39,9 @@ RUN	apk --update add \
 	&& apk del build-dependencies \
 	&& rm -rf /var/cache/apk/*
 
-RUN	mkdir -p /etc/ansible \
-	&& echo 'localhost' > /etc/ansible/hosts \
-	&& mkdir -p ~/.ssh && touch ~/.ssh/known_hosts \
+RUN	mkdir -p /etc/ansible \		
+	&& echo 'localhost' > /etc/ansible/hosts \		
+	&& mkdir -p ~/.ssh && touch ~/.ssh/known_hosts
 
 ONBUILD	WORKDIR	/tmp
 ONBUILD	COPY 	. /tmp
