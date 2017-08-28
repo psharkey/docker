@@ -1,35 +1,27 @@
-FROM maven
+FROM maven:3.5-alpine
 MAINTAINER Pat Sharkey <psharkey@cleo.com>
 
+ARG NODE_VERSION=6.10.3-r1
+ARG DOCKER_VERSION=17.05.0-r0
 # Let's start with some basic stuff.
-RUN apt-get update -qq && apt-get install -qqy \
-        ant \
-        ant-optional \
-	apt-transport-https \
+RUN apk update && apk add \
+        apache-ant \
 	bzip2 \
 	ca-certificates \
 	curl \
+	docker=$DOCKER_VERSION \
 	iptables \
-	ssh-askpass \ 
+	make \
+	nodejs=$NODE_VERSION \
+	py-pip \
+        shadow \
+	sshpass \ 
 	sudo \
         vim \
 	zip \
-	&& apt-get clean \
-	&& rm -rf /var/lib/apt/lists/* \
-	&& rm -rf /tmp/*
+	&& rm -rf /var/cache/apk/*
 
-# Install Node.js v5 via package manager
-# (https://nodejs.org/en/download/package-manager/#debian-and-ubuntu-based-linux-distributions)
-RUN curl -sL https://deb.nodesource.com/setup_5.x | bash -
-RUN apt-get install -qqy nodejs
-
-# Install Docker from Docker Inc. repositories.
-RUN curl -L https://get.docker.com/ | sh
-
-# Install Docker Compose
-ENV DOCKER_COMPOSE_VERSION=1.14.0 DOCKER_SIBLINGS=TRUE
-RUN curl -L https://github.com/docker/compose/releases/download/${DOCKER_COMPOSE_VERSION}/docker-compose-`uname -s`-`uname -m` > /usr/local/bin/docker-compose \
-	&& chmod +x /usr/local/bin/docker-compose
+RUN pip install docker-compose
 
 # Add a user & let each instance define the uid, gid, & home
 # Intended for use with Jenkins but opens other possibilities
@@ -47,7 +39,7 @@ RUN groupadd -f -g ${TOOLBOX_GID} ${TOOLBOX_GROUP} \
 	&& echo "root ALL=NOPASSWD: ALL" >> /etc/sudoers \
 	&& echo "${TOOLBOX_USER} ALL=NOPASSWD: ALL" >> /etc/sudoers \
 	&& printf '#!/bin/bash\nsudo /usr/bin/docker "$@"\n' > ${TOOLBOX_HOME}/docker \
-	&& printf '#!/bin/bash\nsudo /usr/local/bin/docker-compose "$@"\n' > ${TOOLBOX_HOME}/docker-compose \
+	&& printf '#!/bin/bash\nsudo /usr/bin/docker-compose "$@"\n' > ${TOOLBOX_HOME}/docker-compose \
 	&& chmod +x ${TOOLBOX_HOME}/docker*
 
 CMD ["/bin/bash"] 
