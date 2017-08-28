@@ -10,18 +10,18 @@ RUN apk update && apk add \
 	ca-certificates \
 	curl \
 	docker=$DOCKER_VERSION \
+	git \
 	iptables \
-	make \
+	less \
 	nodejs=$NODE_VERSION \
 	py-pip \
-        shadow \
+	shadow \
 	sshpass \ 
 	sudo \
-        vim \
+	vim \
 	zip \
+	&& pip install docker-compose \
 	&& rm -rf /var/cache/apk/*
-
-RUN pip install docker-compose
 
 # Add a user & let each instance define the uid, gid, & home
 # Intended for use with Jenkins but opens other possibilities
