@@ -14,6 +14,7 @@ RUN apk update && apk add \
 	iptables \
 	less \
 	nodejs=$NODE_VERSION \
+	nodejs-npm=$NODE_VERSION \
 	py-pip \
 	shadow \
 	sshpass \ 
