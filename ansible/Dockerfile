@@ -4,6 +4,7 @@ RUN	apk --update add \
 		bash \
 		ca-certificates \
 		git \
+		less=487-r0 \
 		openssl \
 		openssh-client \
 		p7zip \
@@ -16,7 +17,6 @@ RUN	apk --update add \
 		subversion \
 		vim \
 		zip \
-	&& apk --update upgrade less \
     	&& apk --update add --virtual \
 		build-dependencies \
 		python-dev \
