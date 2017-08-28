@@ -1,0 +1,5 @@
+# it is suggested that these be encrypted with ansible-vault:
+# ansible-vault edit group_vars/ubuntu.yml
+
+ansible_user: root
+ansible_password: root
