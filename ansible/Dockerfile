@@ -4,6 +4,7 @@ RUN	apk --update add \
 		bash \
 		ca-certificates \
 		git \
+		less \
 		openssl \
 		openssh-client \
 		p7zip \
