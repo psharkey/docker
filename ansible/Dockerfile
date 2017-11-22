@@ -27,7 +27,7 @@ RUN	apk --update add \
 		pip \
 		cffi \
 	&& pip install \
-		ansible==2.3.0.0 \
+		ansible==2.4.1 \
 		awscli==1.11.85 \
 		boto==2.45.0 \
  		boto3==1.4.4 \
