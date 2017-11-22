@@ -28,11 +28,13 @@ RUN	apk --update add \
 		cffi \
 	&& pip install \
 		ansible==2.4.1 \
+		ansible-lint==3.4.17 \
 		awscli==1.11.85 \
 		boto==2.45.0 \
  		boto3==1.4.4 \
 		docker-py==1.10.6 \
 		dopy==0.3.7 \
+		python_jenkins==0.4.15 \
 		pywinrm>=0.1.1 \
 		pyvmomi==6.0.0.2016.6 \
 		pysphere>=0.1.7 \
