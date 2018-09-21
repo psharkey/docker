@@ -1,13 +1,8 @@
 FROM centos:centos6
-MAINTAINER Nuts Project, LLC <dev@nutsproject.jp>
-
-ENV ROOT_PASSWD=centos \
-    USER_PASSWD=password
 
 # Install base( except "X Window System" "fonts" )
 RUN yum update -y && yum groupinstall -y \
         "Desktop" \
-        "Japanese Support" \
     && yum install -y \
         epel-release \
         sudo \
@@ -64,6 +59,9 @@ RUN yum update -y \
         echo 'stdout_logfile=/var/log/supervisor/vncserver.log'; \
     } > /etc/supervisord.d/vnc.conf
 
+ENV ROOT_PASSWD=centos \
+    USER_PASSWD=password
+
 # Create User
 RUN su root sh -c "yes $ROOT_PASSWD | vncpasswd" \
     && echo "root:$ROOT_PASSWD" | chpasswd \
@@ -100,8 +98,8 @@ RUN gconftool-2 --direct --config-source xml:readwrite:/etc/gconf/gconf.xml.mand
 EXPOSE 5900 5901 3389
 
 COPY docker-entrypoint.sh /entrypoint.sh
-#COPY /installer/ /installer/
 
 ENTRYPOINT ["/entrypoint.sh"]
 
 CMD ["supervisord"]
+
