@@ -1,4 +1,4 @@
-FROM centos:centos6
+FROM centos:centos6.8
 
 # Install base( except "X Window System" "fonts" )
 RUN yum update -y && yum groupinstall -y \
